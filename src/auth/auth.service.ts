@@ -13,7 +13,7 @@ export class AuthService {
   async login(
     email: string,
     password: string,
-  ): Promise<{ access_token: string | undefined }> {
+  ): Promise<{ access_token: string | undefined; userId: number }> {
     const user = await this.userService.getUser(email);
     if (!user) {
       console.log('User not found');
@@ -23,7 +23,8 @@ export class AuthService {
     const isPasswordValid = await bcrypt.compare(password, user.hashedPassword);
     if (isPasswordValid) {
       const access_token = await this.jwtService.signAsync(payload);
-      return { access_token };
+      const userId = (await this.userService.getUser(email)).id;
+      return { access_token, userId };
     } else {
       console.log('Password incorrect');
       throw new HttpException('Incorrect password', HttpStatus.UNAUTHORIZED);
