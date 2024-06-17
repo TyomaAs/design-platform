@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { PortfolioEntity } from 'src/portfolio/portfolio.entity';
 
 @Entity('designer')
 export class DesignerEntity {
@@ -28,4 +35,8 @@ export class DesignerEntity {
 
   @Column({ type: 'integer' })
   age: number;
+
+  @OneToOne(() => PortfolioEntity, (portfolio) => portfolio.id)
+  @JoinColumn({ name: 'portfolio' })
+  idPortfolio: DesignerEntity;
 }

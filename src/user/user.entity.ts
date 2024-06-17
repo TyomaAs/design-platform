@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { DesignerEntity } from 'src/designer/designer.entity';
-import { PortfolioEntity } from 'src/portfolio/portfolio.entity';
 import {
   Column,
   Entity,
   JoinColumn,
-  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -27,13 +24,13 @@ export class UserEntity {
   @Column({ type: 'varchar' })
   hashedPassword: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   avatarURL: string;
 
   @Column({ type: 'varchar' })
   role: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   phoneNumber: string;
 
   @Column({ type: 'integer', nullable: true })

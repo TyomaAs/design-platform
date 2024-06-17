@@ -34,9 +34,15 @@ export class UserController {
   async deleteUser(@Body('id') id: number) {
     return await this.userService.delete(id);
   }
-  @Post('info/:id') async getInfo(@Param('id') id: number) {
+  @Get('info/:id') async getInfo(@Param('id') id: number) {
     console.log(id);
     return await this.userService.getUserByID(id);
+  }
+  @Get('info/')
+  async getInfoByEmail(@Body('email') email: string) {
+    const user = await this.userService.getUser(email);
+    console.log(user);
+    return user;
   }
   @UseGuards(AuthGuard)
   @Post('update')
