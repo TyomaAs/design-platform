@@ -37,6 +37,21 @@ export class UserService {
     try {
       const userDes = await this.userRepository.findBy({ role: 'designer' });
       const des = await this.designerService.getAllDesigner();
+      try {
+        userDes.sort((a, b) => a.id - b.id);
+        console.log('userDes sorted');
+        des.sort((a, b) => a.id - b.id);
+        console.log('des sorted');
+      } catch (err) {
+        console.error(
+          'нич не добре\nelement des\t' +
+            des +
+            '\nuser Des\t' +
+            userDes +
+            '\n' +
+            err,
+        );
+      }
       return { userDes, des };
     } catch (e) {
       throw new HttpException('Not found', HttpStatus.NOT_FOUND);
@@ -88,6 +103,9 @@ export class UserService {
 
   async update(id: number, data: UpdateUserDTO): Promise<void> {
     await this.userRepository.update(id, data);
+    //! if (data.role === 'designer') {
+    // await this.designerService.update(id, data.idDesigner);
+    // }
   }
   async updateAvatar(id: number, imgURL: string): Promise<void> {
     try {
