@@ -22,7 +22,6 @@ export class DesignerService {
     return await this.designerRepository.find();
   }
   async createDesigner(): Promise<DesignerEntity> {
-    const country = 'Ukraine';
     const category = '';
     const salary = 0;
     const major = '';
@@ -30,10 +29,8 @@ export class DesignerService {
     const experience = 0;
     const description = '';
     const sex = '';
-    const age = 0;
     try {
       return this.designerRepository.save({
-        country,
         category,
         salary,
         major,
@@ -41,7 +38,6 @@ export class DesignerService {
         experience,
         description,
         sex,
-        age,
       });
     } catch (error) {
       console.log('Error:' + error);

@@ -72,6 +72,8 @@ export class UserService {
     avatarURL: string,
     role: string,
     phoneNumber: string,
+    country: string,
+    age: number,
   ): Promise<UserEntity> {
     const hashedPassword = await bcrypt.hash(password, 10);
     if (avatarURL === null) avatarURL = '';
@@ -93,6 +95,8 @@ export class UserService {
         avatarURL,
         role,
         phoneNumber,
+        country,
+        age,
         idDesigner,
       });
     } catch (error) {
@@ -147,6 +151,8 @@ export class UserService {
     const avatarURL = '.';
     const role = 'admin';
     const phoneNumber = '';
+    const country = 'Ukraine';
+    const age = 19;
 
     const userEmail = await this.getUser(email);
     if (userEmail) {
@@ -163,6 +169,8 @@ export class UserService {
         avatarURL,
         role,
         phoneNumber,
+        country,
+        age,
       });
     } catch (error) {
       console.log('Error:' + error);

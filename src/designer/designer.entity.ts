@@ -12,9 +12,6 @@ export class DesignerEntity {
   @PrimaryGeneratedColumn() // primary key
   id: number;
 
-  @Column({ type: 'varchar' })
-  country: string;
-
   @Column({ type: 'integer' })
   salary: number;
 
@@ -35,9 +32,6 @@ export class DesignerEntity {
 
   @Column({ type: 'varchar' })
   sex: string;
-
-  @Column({ type: 'integer' })
-  age: number;
 
   @OneToOne(() => PortfolioEntity, (portfolio) => portfolio.id)
   @JoinColumn({ name: 'portfolio' })

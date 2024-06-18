@@ -5,4 +5,6 @@ export interface UpdateUserDTO {
   avatarURL?: string;
   role?: string;
   phoneNumber?: string;
+  age?: number;
+  country?: string;
 }

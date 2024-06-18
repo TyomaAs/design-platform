@@ -33,6 +33,12 @@ export class UserEntity {
   @Column({ type: 'varchar', nullable: true })
   phoneNumber: string;
 
+  @Column({ type: 'varchar' })
+  country: string;
+
+  @Column({ type: 'integer' })
+  age: number;
+
   @Column({ type: 'integer', nullable: true })
   rating: number;
 

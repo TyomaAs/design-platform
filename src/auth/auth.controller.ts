@@ -21,6 +21,8 @@ export class AuthController {
       input.avatarURL,
       input.role,
       input.phoneNumber,
+      input.country,
+      input.age,
     );
   }
 

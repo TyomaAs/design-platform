@@ -39,6 +39,8 @@ export class AuthService {
     avatarURL,
     role,
     phoneNumber,
+    country,
+    age,
   ) {
     const userEmail = await this.userService.getUser(email);
     if (userEmail) {
@@ -54,6 +56,8 @@ export class AuthService {
       avatarURL,
       role,
       phoneNumber,
+      country,
+      age,
     );
     return user; // comment
   }
