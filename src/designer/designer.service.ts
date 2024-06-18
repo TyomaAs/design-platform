@@ -26,6 +26,7 @@ export class DesignerService {
     const category = '';
     const salary = 0;
     const major = '';
+    const placeEducation = '';
     const experience = 0;
     const description = '';
     const sex = '';
@@ -36,6 +37,7 @@ export class DesignerService {
         category,
         salary,
         major,
+        placeEducation,
         experience,
         description,
         sex,

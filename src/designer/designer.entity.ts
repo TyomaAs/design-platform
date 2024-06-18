@@ -24,6 +24,9 @@ export class DesignerEntity {
   @Column({ type: 'varchar' })
   category: string;
 
+  @Column({ type: 'varchar' })
+  placeEducation: string;
+
   @Column({ type: 'integer' })
   experience: number;
 

@@ -40,9 +40,7 @@ export class UserController {
   }
   @Get('info/')
   async getInfoByEmail(@Body('email') email: string) {
-    const user = await this.userService.getUser(email);
-    console.log(user);
-    return user;
+    return await this.userService.getUser(email);
   }
   @UseGuards(AuthGuard)
   @Post('update')
