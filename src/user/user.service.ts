@@ -77,13 +77,30 @@ export class UserService {
   ): Promise<UserEntity> {
     const hashedPassword = await bcrypt.hash(password, 10);
     if (avatarURL === null) avatarURL = '';
-
+    const users = await this.userRepository.find();
+    console.log(users);
+    let idLast;
+    if (users.length > 0) {
+      idLast = users[0].id;
+      for (let i = users.length - 1; i >= 0; i--) {
+        if (idLast < users[i].id) {
+          idLast = users[i].id;
+        } else {
+          idLast++;
+          break;
+        }
+      }
+    } else {
+      console.log('ONLY ONE USER');
+      idLast = 1;
+    }
+    console.log('Last id:\t' + idLast);
     const lastName = ''; // comment
     let idDesigner = null;
     if (role === '') {
       role = 'user';
     } else if (role === 'designer') {
-      const designer = await this.designerService.createDesigner();
+      const designer = await this.designerService.createDesigner(idLast);
       idDesigner = designer.id;
     }
     try {

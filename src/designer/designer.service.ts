@@ -21,7 +21,7 @@ export class DesignerService {
   async getAllDesigner(): Promise<DesignerEntity[]> {
     return await this.designerRepository.find();
   }
-  async createDesigner(): Promise<DesignerEntity> {
+  async createDesigner(idUser: number): Promise<DesignerEntity> {
     const category = '';
     const salary = 0;
     const major = '';
@@ -31,6 +31,7 @@ export class DesignerService {
     const sex = '';
     try {
       return this.designerRepository.save({
+        idUser,
         category,
         salary,
         major,
@@ -45,6 +46,7 @@ export class DesignerService {
     }
   }
   async update(id: number, data: IUpdateDesigner): Promise<void> {
+    console.log(data);
     await this.designerRepository.update(id, data);
   }
   async delete(id: number): Promise<void> {

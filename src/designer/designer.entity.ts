@@ -13,6 +13,9 @@ export class DesignerEntity {
   id: number;
 
   @Column({ type: 'integer' })
+  idUser: number;
+
+  @Column({ type: 'integer' })
   salary: number;
 
   @Column({ type: 'varchar' })
