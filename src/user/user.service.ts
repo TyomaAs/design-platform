@@ -37,21 +37,8 @@ export class UserService {
     try {
       const userDes = await this.userRepository.findBy({ role: 'designer' });
       const des = await this.designerService.getAllDesigner();
-      try {
-        userDes.sort((a, b) => a.id - b.id);
-        console.log('userDes sorted');
-        des.sort((a, b) => a.idUser - b.idUser);
-        console.log('des sorted');
-      } catch (err) {
-        console.error(
-          'нич не добре\nelement des\t' +
-            des +
-            '\nuser Des\t' +
-            userDes +
-            '\n' +
-            err,
-        );
-      }
+      userDes.sort((a, b) => a.id - b.id);
+      des.sort((a, b) => a.idUser - b.idUser);
       return { userDes, des };
     } catch (e) {
       throw new HttpException('Not found', HttpStatus.NOT_FOUND);
@@ -78,7 +65,6 @@ export class UserService {
     const hashedPassword = await bcrypt.hash(password, 10);
     if (avatarURL === null) avatarURL = '';
     const users = await this.userRepository.find();
-    console.log(users);
     let idLast;
     if (users.length > 0) {
       idLast = users[0].id;
@@ -91,10 +77,8 @@ export class UserService {
         }
       }
     } else {
-      console.log('ONLY ONE USER');
       idLast = 1;
     }
-    console.log('Last id:\t' + idLast);
     const lastName = ''; // comment
     let idDesigner = null;
     if (role === '') {
@@ -117,7 +101,6 @@ export class UserService {
         idDesigner,
       });
     } catch (error) {
-      console.log('Error:' + error);
       throw new HttpException('Error creating user', HttpStatus.BAD_REQUEST);
     }
   }
@@ -190,7 +173,6 @@ export class UserService {
         age,
       });
     } catch (error) {
-      console.log('Error:' + error);
       throw new HttpException('Error creating user', HttpStatus.BAD_REQUEST);
     }
   }
