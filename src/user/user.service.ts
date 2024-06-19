@@ -40,7 +40,7 @@ export class UserService {
       try {
         userDes.sort((a, b) => a.id - b.id);
         console.log('userDes sorted');
-        des.sort((a, b) => a.id - b.id);
+        des.sort((a, b) => a.idUser - b.idUser);
         console.log('des sorted');
       } catch (err) {
         console.error(
